@@ -29,9 +29,9 @@ dotenv.config();
 // const httpServer = createServer(app);
 
 //SOCKET PART
-const io = new Server(8800, {
+const io = new Server(process.env.socketPort, {
   cors: {
-      origin: ["http://localhost:3000", "https://master.d324cc897mcqpi.amplifyapp.com"],
+      origin: [process.env.localhostPort, process.env.onlineFrontEnd],
   },
 });
 
