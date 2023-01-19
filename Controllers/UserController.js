@@ -79,12 +79,33 @@ export const getFollowers = async (req, res) => {
   const userId=req.params.id?req.params.id:req.userId
   
   try {
+    console.log("get followers");
     const allFollowers = await UserModel.findOne({_id:userId}).populate("followers");
    
     if (allFollowers) {
       //       const userDetails = allUsers._doc;
       // console.log(userDetails,"userDetailsss............")
       res.status(200).json(allFollowers.followers);
+    } else {
+      res.status(404).json("user does't exist");
+    }
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+//get all followings
+
+export const getFollowings = async (req, res) => {
+  const userId=req.params.id?req.params.id:req.userId
+  
+  try {
+    console.log("get followings");
+    const allFollowings = await UserModel.findOne({_id:userId}).populate("following");
+   console.log(allFollowings,"allFollowingsallFollowingsallFollowings")
+    if (allFollowings) {
+      //       const userDetails = allUsers._doc;
+      // console.log(userDetails,"userDetailsss............")
+      res.status(200).json(allFollowings.following);
     } else {
       res.status(404).json("user does't exist");
     }

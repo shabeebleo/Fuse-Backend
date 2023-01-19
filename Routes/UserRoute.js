@@ -5,7 +5,7 @@ import { updateUser } from "../Controllers/UserController.js";
 import { deleteUser ,getSearchUsers} from "../Controllers/UserController.js";
 import { followUnFollowUser } from "../Controllers/UserController.js";
 import { getAllUsers } from "../Controllers/UserController.js";
-import { profileData,getFollowers } from "../Controllers/UserController.js";
+import { profileData,getFollowers,getFollowings} from "../Controllers/UserController.js";
 import protect from "../middlewares/authMiddleware.js";
 import { uploads } from "../utils/multer.js";
 const router = express.Router();
@@ -33,5 +33,6 @@ router.delete("/:id", protect, deleteUser);
 router.put("/:id/follow", protect, followUnFollowUser);
 router.put("/:id/unfollow", protect, followUnFollowUser);
 router.get("/followers/:id", protect, getFollowers);
+router.get("/following/:id", protect, getFollowings);
 router.get("/searchUser/:id",getSearchUsers)
 export default router;
